@@ -28,7 +28,10 @@ To use this automation, you need to configure the following secrets in your GitH
 1. Go to your GitHub repository
 2. Navigate to Settings > Secrets and variables > Actions
 3. Click "New repository secret"
-4. Add the required secrets
+4. Add the required secrets:
+   - `ZAPIER_API_KEY`: Your Zapier API key for deploying to Zapier Functions
+   - `JARVIS_TOKEN`: Your Jarvis authentication token
+   - `ZAPIER_MCP_ENDPOINT` (optional): Override the MCP endpoint from config.json
 
 ## Files
 
@@ -39,12 +42,29 @@ To use this automation, you need to configure the following secrets in your GitH
 
 ## Customization
 
-You can customize the deployment logic in `deploy.py` to fit your specific needs:
+⚠️ **Important**: The deployment logic in `deploy.py` contains placeholder code that needs to be customized for your specific deployment needs.
 
-- Add API calls to Zapier Functions
-- Integrate with Jarvis endpoints
+You should customize the deployment logic in `deploy.py` to fit your specific needs:
+
+- **Zapier Deployment** (lines 56-66): Add actual API calls to deploy to Zapier Functions using the MCP endpoint
+- **Jarvis Deployment** (lines 77-80): Add actual API calls or deployment commands for Jarvis platform
 - Add notifications to Teams or Slack
 - Implement custom deployment logic
+- Add error handling and retry logic
+
+### Example Customization
+
+To implement actual Zapier deployment:
+```python
+import requests
+
+response = requests.post(
+    mcp_endpoint,
+    headers={"Authorization": f"Bearer {zapier_api_key}"},
+    json={"action": "deploy", "automation": "DT3"}
+)
+response.raise_for_status()
+```
 
 ## Testing Locally
 

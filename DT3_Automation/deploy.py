@@ -54,7 +54,8 @@ def deploy_to_zapier():
         # - Managing Zap triggers and actions
         
         try:
-            # Add your Zapier MCP API integration logic here
+            # TODO: Add your Zapier MCP API integration logic here
+            # This is placeholder code that should be replaced with actual deployment logic
             # Example: POST deployment data to the MCP endpoint
             # import requests
             # response = requests.post(
@@ -62,8 +63,10 @@ def deploy_to_zapier():
             #     headers={"Authorization": f"Bearer {zapier_api_key}"},
             #     json={"action": "deploy", "automation": "DT3"}
             # )
+            # response.raise_for_status()
             
             print("Zapier MCP deployment completed successfully!")
+            print("NOTE: Using placeholder deployment logic - customize deploy.py for actual deployments")
         except Exception as e:
             print(f"Warning: Zapier deployment encountered an issue: {e}")
     else:
@@ -76,8 +79,10 @@ def deploy_to_jarvis():
     
     if jarvis_token:
         print("Deploying to Jarvis...")
-        # Add your Jarvis deployment logic here
+        # TODO: Add your Jarvis deployment logic here
+        # This is placeholder code that should be replaced with actual deployment logic
         print("Jarvis deployment completed successfully!")
+        print("NOTE: Using placeholder deployment logic - customize deploy.py for actual deployments")
     else:
         print("Skipping Jarvis deployment (no token provided)")
 

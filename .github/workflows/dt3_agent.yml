@@ -25,5 +25,6 @@ jobs:
       - name: Run Deployment Script
         env:
           ZAPIER_API_KEY: ${{ secrets.ZAPIER_API_KEY }}
+          ZAPIER_MCP_ENDPOINT: ${{ secrets.ZAPIER_MCP_ENDPOINT }}
           JARVIS_TOKEN: ${{ secrets.JARVIS_TOKEN }}
         run: python DT3_Automation/deploy.py
