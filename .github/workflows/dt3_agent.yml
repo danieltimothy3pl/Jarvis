@@ -1,0 +1,33 @@
+name: DT3 Automation Agent
+
+on:
+  push:
+    paths:
+      - 'DT3_Automation/**'
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: |
+          if [ -s requirements.txt ]; then
+            pip install -r requirements.txt
+          else
+            echo "No dependencies to install (requirements.txt is empty or missing)"
+          fi
+      - name: Run Deployment Script
+        env:
+          ZAPIER_API_KEY: ${{ secrets.ZAPIER_API_KEY }}
+          ZAPIER_MCP_ENDPOINT: ${{ secrets.ZAPIER_MCP_ENDPOINT }}
+          JARVIS_TOKEN: ${{ secrets.JARVIS_TOKEN }}
+        run: python DT3_Automation/deploy.py
