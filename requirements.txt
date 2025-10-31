@@ -1,0 +1,4 @@
+# Python dependencies for DT3 Automation
+# Add your required packages here, for example:
+# requests>=2.31.0
+# zapier-platform-sdk>=1.0.0
