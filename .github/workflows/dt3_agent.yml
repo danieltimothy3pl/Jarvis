@@ -5,6 +5,9 @@ on:
     paths:
       - 'DT3_Automation/**'
 
+permissions:
+  contents: read
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
