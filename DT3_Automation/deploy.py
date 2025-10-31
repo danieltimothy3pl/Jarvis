@@ -9,9 +9,21 @@ It is triggered by the GitHub Actions workflow when changes are pushed to the DT
 import os
 import sys
 import json
+from pathlib import Path
 
-# Zapier MCP API endpoint
-ZAPIER_MCP_ENDPOINT = "https://mcp.zapier.com/api/mcp/a/20284927/mcp"
+
+def load_config():
+    """Load configuration from config.json."""
+    config_path = Path(__file__).parent / "config.json"
+    try:
+        with open(config_path, 'r') as f:
+            return json.load(f)
+    except FileNotFoundError:
+        print("Warning: config.json not found, using defaults")
+        return {}
+    except json.JSONDecodeError as e:
+        print(f"Warning: Error parsing config.json: {e}")
+        return {}
 
 
 def get_env_variable(var_name, required=True):
@@ -25,10 +37,15 @@ def get_env_variable(var_name, required=True):
 def deploy_to_zapier():
     """Deploy to Zapier Functions via MCP endpoint."""
     zapier_api_key = get_env_variable('ZAPIER_API_KEY', required=False)
+    config = load_config()
+    
+    # Get MCP endpoint from config or environment variable
+    mcp_endpoint = os.environ.get('ZAPIER_MCP_ENDPOINT') or config.get('zapier_mcp', {}).get('endpoint')
     
     if zapier_api_key:
         print("Deploying to Zapier Functions...")
-        print(f"Using Zapier MCP endpoint: {ZAPIER_MCP_ENDPOINT}")
+        if mcp_endpoint:
+            print(f"Using Zapier MCP endpoint: {mcp_endpoint}")
         
         # MCP endpoint integration
         # This endpoint can be used for:
@@ -41,7 +58,7 @@ def deploy_to_zapier():
             # Example: POST deployment data to the MCP endpoint
             # import requests
             # response = requests.post(
-            #     ZAPIER_MCP_ENDPOINT,
+            #     mcp_endpoint,
             #     headers={"Authorization": f"Bearer {zapier_api_key}"},
             #     json={"action": "deploy", "automation": "DT3"}
             # )
