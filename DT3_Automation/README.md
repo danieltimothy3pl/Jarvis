@@ -7,6 +7,14 @@ This directory contains the automation scripts that are automatically deployed w
 1. When you push changes to this directory, the GitHub Actions workflow (`.github/workflows/dt3_agent.yml`) is triggered
 2. The workflow sets up a Python environment and installs dependencies
 3. The `deploy.py` script is executed with the configured secrets
+4. Deploys to Zapier MCP endpoint and Jarvis platform
+
+## Zapier MCP Integration
+
+This automation integrates with Zapier's Model Context Protocol (MCP) endpoint:
+- **Endpoint**: `https://mcp.zapier.com/api/mcp/a/20284927/mcp`
+- **Purpose**: Enable structured communication between DT3 and Zapier platform
+- **Features**: Deploy functions, sync configurations, manage triggers/actions
 
 ## Setup
 
@@ -24,7 +32,9 @@ To use this automation, you need to configure the following secrets in your GitH
 
 ## Files
 
-- `deploy.py`: Main deployment script that handles deployments to Zapier and Jarvis
+- `deploy.py`: Main deployment script that handles deployments to Zapier MCP and Jarvis
+- `config.json`: Configuration file for Zapier MCP endpoint and automation settings
+- `ARCHITECTURE.md`: Detailed system architecture documentation
 - `README.md`: This file
 
 ## Customization

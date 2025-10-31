@@ -1,0 +1,27 @@
+{
+  "zapier_mcp": {
+    "endpoint": "https://mcp.zapier.com/api/mcp/a/20284927/mcp",
+    "description": "Zapier Model Context Protocol endpoint for DT3 integration",
+    "purpose": "Enable MCP-based communication between DT3 and Zapier platform",
+    "capabilities": [
+      "Deploy Zapier Functions",
+      "Sync automation configurations",
+      "Manage Zap triggers and actions",
+      "Real-time event notifications"
+    ]
+  },
+  "automations": {
+    "example_automation": {
+      "automation_key": "prospecting_auto_approver",
+      "assistant_id": "asst_placeholder",
+      "webhook_url": "https://hooks.zapier.com/hooks/catch/placeholder/",
+      "enabled": false,
+      "description": "Example automation configuration"
+    }
+  },
+  "deployment": {
+    "auto_deploy": true,
+    "retry_attempts": 3,
+    "timeout_seconds": 30
+  }
+}
